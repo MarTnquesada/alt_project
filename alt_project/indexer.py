@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-#Autores: DAVID FERRER PÉREZ, MARTÍN QUESADA ZARAGOZA, JAVIER FRANCÉS MARTÍNEZ
+# authors: David Ferrer Pérez, Martín Quesada Zaragoza, Javier Francés Martínez
 
 import os
 import sys
@@ -15,6 +14,7 @@ clean_re = re.compile('\W+')
 def clean_text(text):
     return clean_re.sub(' ', text)
 
+
 def save_object(data, filename):
     with open(filename, 'wb') as fh:
         pickle.dump(data, fh)
@@ -27,13 +27,16 @@ def load_jason(filename):
 
 
 def list_permuterm(word):
-    '''
-    Crea un indice permuterm de una palabra (word)
-    '''
+    """
+    Creates a permuterm list from a given word
+    :param str word:
+    :return: permuterm list of the given word
+    :rtype: list
+    """
     word = word + '$'
     res = []
     for i, letter in enumerate(word):
-        word = word[1:]+word[0]
+        word = word[1:] + word[0]
         res.append(word)
     return res
 

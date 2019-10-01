@@ -1,3 +1,5 @@
+# authors: Martín Quesada Zaragoza
+
 from alt_project import distance_calc
 
 

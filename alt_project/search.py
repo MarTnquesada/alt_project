@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-#Autores: DAVID FERRER PÉREZ, MARTÍN QUESADA ZARAGOZA, JAVIER FRANCÉS MARTÍNEZ
+# authors: David Ferrer Pérez, Martín Quesada Zaragoza, Javier Francés Martínez
 
 import os
 import sys
@@ -7,8 +6,8 @@ import json
 import pickle
 import re
 from nltk.stem import SnowballStemmer
-stemmer = SnowballStemmer('spanish')
 
+stemmer = SnowballStemmer('spanish')
 clean_re = re.compile('\W+')
 
 
