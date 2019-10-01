@@ -1,22 +1,25 @@
-from alt_project.distance_calc import levenshtein, damerau_levenshtein
+from alt_project import distance_calc
 
 
-def class TestDistanceCalc():
+class TestDistanceCalc:
 
-    def test_levenshtein(self):
+    def test_hamming(self):
         chain1 = "AACBDCE"
         chain2 = "ACBBBCF"
         correct_distance = 4
-        obtained_distance = hamming(chain1, chain2)
+        obtained_distance = distance_calc.hamming(chain1, chain2)
         assert correct_distance == obtained_distance
 
     def test_levenshtein(self):
-        chain1 = "AACBDC"
-        chain2 = "ACBBBC"
-        correct_distance = 3
-        obtained_distance = levenshtein(chain1, chain2, 10)
+        chain1 = "AACBDCEF"
+        chain2 = "ACBBBCFE"
+        correct_distance = 5
+        obtained_distance = distance_calc.levenshtein(chain1, chain2)
         assert correct_distance == obtained_distance
 
-
     def test_damerau_levenshtein(self):
-        pass
+        chain1 = "AACBDCFE"
+        chain2 = "ACBBBCEF"
+        correct_distance = 4
+        obtained_distance = distance_calc.damerau_levenshtein(chain1, chain2)
+        assert correct_distance == obtained_distance
