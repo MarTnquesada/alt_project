@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14956514-dcf0-4a5f-8162-7f633ee1af84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alt_project/indexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/alt_project/indexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alt_project/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/alt_project/search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_distance_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_distance_calc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alt_project/distance_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/alt_project/distance_calc.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +44,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -1,3 +1,4 @@
+# author: Martín Quesada Zaragoza
 
 
 def hamming(chain1, chain2):
