@@ -28,7 +28,7 @@ def build_trie(vocab):
     max_nodes = sum([len(word) for word in vocab])
 
     # we initialize the trie matrix with 1/2 of the maximum possible number of nodes
-    m = np.zeros(dtype=np.int8, shape=(int(6), len(alphabet)))
+    m = np.zeros(dtype=np.int8, shape=(int(max_nodes/2), len(alphabet)))
     deepest_node = 0
     for word in vocab:
         current_node = 0
@@ -36,8 +36,10 @@ def build_trie(vocab):
             try:
                 next_node = m[current_node][lookup[let]]
             except IndexError:
-                z = np.zeros(dtype=np.int8, shape=(1, len(alphabet)))
-                m = np.concatenate((m, z), axis=0)
+                # add new nodes until meeting the latest size requirements. new nodes are not created until accessed
+                while m.shape[0] <= current_node:
+                    z = np.zeros(dtype=np.int8, shape=(1, len(alphabet)))
+                    m = np.concatenate((m, z), axis=0)
                 next_node = m[current_node][lookup[let]]
             if next_node == 0:
                 deepest_node += 1
