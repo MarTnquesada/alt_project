@@ -1,6 +1,9 @@
+# author: Martín Quesada Zaragoza
+
 from alt_project.indexer import clean_text, save_object
 import argparse
 import numpy as np
+import time
 
 
 def vocab_from_file(filename):
@@ -55,13 +58,23 @@ def is_terminal(matrix, node):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--src')
-    parser.add_argument('--vocab')
-    parser.add_argument('--trie')
+    parser.add_argument('--src', help='Source plain text file')
+    parser.add_argument('--vocab', help='Name of the pickle file containing the vocabulary as a list')
+    parser.add_argument('--trie', help='Name of the pickle file containing the tuple (trie, lookup)')
     args = parser.parse_args()
 
-    vocab_list = ["caro", "cara", "codo", "caros"]
-    print(build_trie(vocab_list))
+    start_time = time.time()
+    vocab_list = vocab_from_file(args.src)
+    print("Created vocabulary list, time elapsed: " + str(time.time()-start_time))
+
+    start_time = time.time()
+    trie, lookup = build_trie(vocab_list)
+    print("Created trie, time elapsed: " + str(time.time()-start_time))
+
+    # saving the vocab_list pickle file
+    save_object(vocab_list, args.vocab)
+    # saving the trie pickle file
+    save_object((trie, lookup), args.trie)
 
 
 if __name__ == '__main__':

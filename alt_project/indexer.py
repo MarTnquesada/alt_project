@@ -8,11 +8,11 @@ import pickle
 from nltk.stem import SnowballStemmer
 
 stemmer = SnowballStemmer('spanish')
-clean_re = re.compile('\W+')
+tokenize_re = re.compile(r'\W+')
 
 
 def clean_text(text):
-    return clean_re.sub(' ', text)
+    return tokenize_re.sub(' ', text).lower()
 
 
 def save_object(data, filename):
