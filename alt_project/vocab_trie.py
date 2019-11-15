@@ -56,6 +56,29 @@ def is_terminal(matrix, node):
     return not matrix[node].any()
 
 
+def parent(matrix, node):
+    if node == 0 or node > len(matrix):
+        return -1
+    for n in reversed(range(0, node)):
+        if node in matrix[n]:
+            return n
+    return 0
+
+
+def depth(matrix, node):
+    if node > len(matrix):
+        return -1
+    if node == 0:
+        return 0
+    else:
+        aux_node = node
+        d = 1
+        while parent(matrix, aux_node) != 0:
+            d += 1
+            aux_node = parent(matrix, aux_node)
+        return d
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--src', help='Source plain text file')

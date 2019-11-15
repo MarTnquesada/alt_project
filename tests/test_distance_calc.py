@@ -20,8 +20,8 @@ class TestDistanceCalc:
         assert correct_distance == obtained_distance
 
     def test_damerau_levenshtein(self):
-        chain1 = "AACBDCFE"
-        chain2 = "ACBBBCEF"
+        chain1 = "AACBDCEF"
+        chain2 = "ACBBBCFE"
         correct_distance = 4
         obtained_distance = distance_calc.damerau_levenshtein(chain1, chain2)
         assert correct_distance == obtained_distance

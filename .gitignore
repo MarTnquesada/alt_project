@@ -1,3 +1,7 @@
 .idea/
 .pytest_cache/
 env/
+alt_project/__pycache__/
+tests/__pycache__/
+alt_project/trie_quijote
+alt_project/vocab_quijote

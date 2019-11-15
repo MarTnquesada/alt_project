@@ -24,3 +24,19 @@ class TestDistanceCalc:
         for i, n in enumerate(nodes):
             correct_matrix[i] = n
         assert vocab_trie.is_terminal(correct_matrix, 5)
+
+    def test_parent(self):
+        correct_matrix = np.zeros(shape=(8, 6), dtype=np.int8)
+        nodes = [[1, 0, 0, 0, 0, 0], [0, 2, 0, 6, 0, 0], [0, 0, 3, 0, 0, 0], [0, 5, 0, 4, 0, 0], [0, 0, 0, 0, 0, 9],
+                 [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 7, 0], [0, 0, 0, 8, 0, 0]]
+        for i, n in enumerate(nodes):
+            correct_matrix[i] = n
+        assert vocab_trie.parent(correct_matrix, 5) == 3
+
+    def test_depth(self):
+        correct_matrix = np.zeros(shape=(8, 6), dtype=np.int8)
+        nodes = [[1, 0, 0, 0, 0, 0], [0, 2, 0, 6, 0, 0], [0, 0, 3, 0, 0, 0], [0, 5, 0, 4, 0, 0], [0, 0, 0, 0, 0, 9],
+                 [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 7, 0], [0, 0, 0, 8, 0, 0]]
+        for i, n in enumerate(nodes):
+            correct_matrix[i] = n
+        assert vocab_trie.depth(correct_matrix, 5) == 4
