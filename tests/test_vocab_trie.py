@@ -40,3 +40,8 @@ class TestDistanceCalc:
         for i, n in enumerate(nodes):
             correct_matrix[i] = n
         assert vocab_trie.depth(correct_matrix, 5) == 4
+
+    def test_symbol(self):
+        vocab_list = ["caro", "cara", "codo", "caros"]
+        m, lookup = vocab_trie.build_trie(vocab_list)
+        assert(vocab_trie.symbol(m, lookup, 1) == "c")

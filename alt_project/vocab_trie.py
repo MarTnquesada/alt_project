@@ -79,6 +79,13 @@ def depth(matrix, node):
         return d
 
 
+def symbol(matrix, lookup, node):
+    col = list(matrix[parent(matrix, node)]).index(node)
+    for key, value in lookup.items():
+        if value == col:
+            return key
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--src', help='Source plain text file')

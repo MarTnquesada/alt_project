@@ -1,6 +1,7 @@
 # authors: Martín Quesada Zaragoza
 
 from alt_project import distance_calc
+from alt_project.vocab_trie import build_trie
 
 
 class TestDistanceCalc:
@@ -25,3 +26,11 @@ class TestDistanceCalc:
         correct_distance = 4
         obtained_distance = distance_calc.damerau_levenshtein(chain1, chain2)
         assert correct_distance == obtained_distance
+
+    def test_levenshtein_dynamic(self):
+        vocab_list = ["caro", "cara", "codo", "caros"]
+        m, lookup = build_trie(vocab_list)
+        res = distance_calc.levenshtein_dynamic("cara", m, lookup)
+        # check that "cara" has not distance with itself
+        assert list(res[8]) == [4, 0, 0, 0, 0]
+

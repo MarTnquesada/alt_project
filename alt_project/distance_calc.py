@@ -3,6 +3,8 @@
 import argparse
 import pickle
 import numpy as np
+from alt_project.vocab_trie import depth, parent, symbol
+
 
 def hamming(seq1, seq2):
     if len(list(seq1)) != len(list(seq2)):
@@ -51,14 +53,69 @@ def damerau_levenshtein(seq1, seq2):
 
 
 def levenshtein_dynamic(seq, trie, lookup):
-    # TODO dont do this recursively you son of a, dynamic programming
-    D = []
-    for i in reversed(seq):
+    D = np.zeros(dtype=np.int8, shape=(len(trie) + 1, len(seq) + 1))
+    for i, cell in enumerate(D[0]):
+        D[0, i] = i
+    for n, node in enumerate(D[1:], start=1):
+        D[n, 0] = depth(trie, n)
+        for i, let in enumerate(node[1:], start=1):
+            D[n, i] = min(D[n, i - 1] + 1,
+                          D[parent(trie, n), i] + 1,
+                          D[parent(trie, n), i-1] + (seq[i - 1] == symbol(trie, lookup, n)), i - 1)
+    return D
+
+
+class LevenshteinBacktrackingScheme:
+    def __init__(self, seq, trie, lookup):
+        self.seq = seq
+        self.trie = trie
+        self.lookup = lookup
+
+    # nothing complete, still dubious about all of this
+    def is_complete(self, s):
+        return s[0] == len(self.seq)
+
+    def is_feasible(self, s):
         pass
-    pass
+
+    def is_promising(self, s):
+        #
+        pass
+
+    def branch(self, s):
+        # think on the base case, s = []
+        pass
+
+    def backtracking(self, s):
+        q = [s]
+        while len(q) > 0:
+            s = q.pop(0)
+            if self.is_complete(s):
+                if self.is_feasible(s):
+                    return s
+            else:
+                for n in self.branch(s):
+                    if self.is_promising(n):
+                        q.insert(0, n)
+        return None
+
+    def all_solutions_backtracking(self, s):
+        q = [s]
+        while len(q) > 0:
+            s = q.pop(0)
+            if self.is_complete(s):
+                if self.is_feasible(s):
+                    yield s
+            else:
+                for n in self.branch(s):
+                    if self.is_promising(n):
+                        q.insert(0, n)
+
+    def solve(self, s):
+        return self.backtracking([])
 
 
-def levenshtein_branch_bound():
+def levenshtein_branch_bound(seq, trie, lookup):
     pass
 
 
